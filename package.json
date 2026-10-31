@@ -1,0 +1,17 @@
+{
+  "name": "stichtech",
+  "version": "2.0.0",
+  "description": "Website stiker vinyl SticTech - Kelompok 1 Kewirausahaan",
+  "private": true,
+  "scripts": {
+    "build:css": "tailwindcss -c tailwind.config.js -i css/tailwind.input.css -o css/tailwind.css --minify",
+    "watch:css": "tailwindcss -c tailwind.config.js -i css/tailwind.input.css -o css/tailwind.css --watch",
+    "check:js": "node --check js/*.js",
+    "check:html": "npx html-validate *.html || true"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.17",
+    "@supabase/supabase-js": "^2.49.0",
+    "xlsx": "^0.18.5"
+  }
+}

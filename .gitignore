@@ -1,0 +1,5 @@
+node_modules/
+package-lock.css
+.DS_Thumbs
+*.local
+_tools/

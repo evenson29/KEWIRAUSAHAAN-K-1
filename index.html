@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Stiker vinyl premium anti air untuk mahasiswa dan UMKM di sekitar Unimor. Tahan air, awet, dan harga terjangkau." />
+    <link rel="canonical" href="https://sticktech.meisyaprinting.com/index.html" />
+    <meta property="og:title" content="SticTech - Stiker Vinyl Anti Air Premium" />
+    <meta property="og:description" content="Stiker vinyl premium anti air untuk mahasiswa dan UMKM di sekitar Unimor." />
+    <meta property="og:image" content="assets/logo.jpg" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" type="image/jpeg" href="assets/logo.jpg" />
+    <link rel="stylesheet" href="css/tailwind.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+    <script src="js/config.js" defer></script>
+    <script src="js/app.js" defer></script>
+    <script src="js/home.js" defer></script>
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Lompat ke konten utama</a>
+    <!-- Particles Background -->
+    <div class="particles" id="particles"></div>
+
+    <nav class="navbar-blur fixed top-0 left-0 right-0 z-50" id="navbar">
+      <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+        <a href="index.html" class="flex items-center gap-2">
+          <img
+            src="assets/logo.jpg"
+            alt="SticTech Logo"
+            class="h-12 w-auto rounded-xl"
+            onerror="this.style.display = 'none'; this.nextElementSibling.style.display = 'inline';"
+          />
+          <span class="text-xl font-bold gradient-text" style="display: none">SticTech.</span>
+        </a>
+        <div class="nav-desktop flex items-center gap-1">
+          <a href="index.html" class="nav-link active">Beranda</a>
+          <a href="#pesan" class="nav-link">Pesan</a>
+          <a href="galeri.html" class="nav-link">Galeri</a>
+          <a href="tentang.html" class="nav-link">Tentang</a>
+          <a href="kontak.html" class="nav-link">Kontak</a>
+          <a href="admin.html" class="btn-primary btn-sm text-xs ml-2">Admin</a>
+        </div>
+        <button
+          class="hamburger"
+          id="hamburger-btn"
+          aria-label="Buka Menu Navigasi"
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+        >
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+      <div class="nav-mobile flex md:hidden" id="mobile-nav" role="navigation" aria-label="Navigasi Seluler">
+        <a href="index.html" class="nav-link active">Beranda</a>
+        <a href="#pesan" class="nav-link">Pesan</a>
+        <a href="galeri.html" class="nav-link">Galeri</a>
+        <a href="tentang.html" class="nav-link">Tentang</a>
+        <a href="kontak.html" class="nav-link">Kontak</a>
+        <a href="admin.html" class="nav-link">Admin</a>
+      </div>
+    </nav>
+
+    <main id="main-content">
+      <!-- HERO SECTION -->
+      <section class="relative pt-36 pb-28 px-4 overflow-hidden min-h-[90vh] flex items-center">
+        <div class="hero-glow animate-pulse-glow" style="background: #00adb5; top: -200px; left: -100px; opacity: 0.15"></div>
+        <div class="hero-glow animate-pulse-glow" style="background: #00adb5; top: -100px; right: -150px; animation-delay: 1.5s; opacity: 0.1"></div>
+        <div class="hero-glow animate-pulse-glow" style="background: #00adb5; bottom: -200px; left: 50%; animation-delay: 3s; width: 400px; height: 400px; opacity: 0.12"></div>
+
+        <div class="max-w-6xl mx-auto text-center relative z-10 w-full flex flex-col items-center">
+          <div class="animate-fade-in-up flex flex-col items-center">
+            <div class="mb-8 relative">
+              <img
+                src="assets/logo.jpg"
+                alt="SticTech Logo"
+                class="w-36 h-36 md:w-44 md:h-44 rounded-2xl mx-auto border-2 border-accent/20 shadow-lg shadow-accent/15 animate-float"
+                onerror="this.style.display = 'none'"
+              />
+              <div class="absolute -inset-4 bg-gradient-to-r from-accent/10 to-accent/10 rounded-3xl blur-xl -z-10"></div>
+            </div>
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-accent/20 bg-accent/10 text-accentDark text-sm font-medium mb-6 animate-fade-in-up stagger-1">
+              <span class="w-2 h-2 bg-emerald-600 rounded-full animate-pulse"></span>
+              Stiker Vinyl Premium
+            </div>
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-extrabold mb-6 leading-tight">
+              <span class="gradient-text">SticTech.</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-muted max-w-2xl mx-auto mb-10 leading-relaxed">
+              Solusi stiker kustom berkualitas tinggi, tahan air, dan awet untuk mahasiswa Unimor &amp; UMKM sekitar.
+            </p>
+          </div>
+          <div class="animate-fade-in-up stagger-2 flex flex-col sm:flex-row gap-4 justify-center mb-8">
+            <a href="#katalog" class="btn-primary text-base px-8 py-3.5">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+              </svg>
+              Lihat Katalog
+            </a>
+            <a href="#pesan" class="btn-secondary text-base px-8 py-3.5">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+              </svg>
+              Pesan Sekarang
+            </a>
+          </div>
+          <div class="animate-fade-in-up stagger-3 flex flex-wrap items-center justify-center gap-6 text-sm text-soft">
+            <span class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-accentDark" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              Vinyl Anti Air
+            </span>
+            <span class="w-1.5 h-1.5 bg-accent/30 rounded-full"></span>
+            <span class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-accentDark" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8V7m0 10v1" />
+              </svg>
+              Harga Mahasiswa
+            </span>
+            <span class="w-1.5 h-1.5 bg-accent/30 rounded-full"></span>
+            <span class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-accentDark" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+              Cepat &amp; Berkualitas
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <!-- KATALOG PRODUK -->
+      <section id="katalog" class="py-24 px-4 relative">
+        <div class="max-w-6xl mx-auto">
+          <div class="text-center mb-14 reveal">
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-accent/20 bg-accent/10 text-accentDark text-xs font-medium mb-4">
+              KATALOG
+            </div>
+            <h2 class="text-4xl md:text-5xl font-bold gradient-text mb-4">
+              Katalog Produk
+            </h2>
+            <p class="text-muted text-lg max-w-lg mx-auto">
+              Stiker vinyl berkualitas, tahan air, harga mahasiswa
+            </p>
+          </div>
+          <div id="product-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 md:gap-6 justify-items-center">
+            <!-- Skeleton Loading Placeholders -->
+            <div class="product-card p-4 space-y-3 w-full animate-pulse">
+              <div class="aspect-square rounded-xl bg-gray-200"></div>
+              <div class="h-4 bg-gray-200 rounded w-3/4"></div>
+              <div class="h-3 bg-gray-200 rounded w-1/2"></div>
+              <div class="flex justify-between items-center pt-2">
+                <div class="h-5 bg-gray-200 rounded w-1/3"></div>
+                <div class="h-7 bg-gray-200 rounded w-16"></div>
+              </div>
+            </div>
+            <div class="product-card p-4 space-y-3 w-full animate-pulse hidden sm:block">
+              <div class="aspect-square rounded-xl bg-gray-200"></div>
+              <div class="h-4 bg-gray-200 rounded w-3/4"></div>
+              <div class="h-3 bg-gray-200 rounded w-1/2"></div>
+              <div class="flex justify-between items-center pt-2">
+                <div class="h-5 bg-gray-200 rounded w-1/3"></div>
+                <div class="h-7 bg-gray-200 rounded w-16"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider max-w-4xl mx-auto"></div>
+
+      <!-- PROSES KERJA -->
+      <section class="py-24 px-4 relative overflow-hidden">
+        <div style="position: absolute; inset: 0; background: radial-gradient(ellipse at 30% 50%, rgba(0, 173, 181, 0.08) 0%, transparent 60%), radial-gradient(ellipse at 70% 50%, rgba(0, 173, 181, 0.05) 0%, transparent 60%); pointer-events: none;"></div>
+        <div class="max-w-6xl mx-auto relative z-10">
+          <div class="text-center mb-14 reveal">
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-accent/20 bg-accent/10 text-accentDark text-xs font-medium mb-4">
+              PROSES
+            </div>
+            <h2 class="text-4xl md:text-5xl font-bold text-ink mb-4">
+              Proses Kerja
+            </h2>
+            <p class="text-muted text-lg max-w-lg mx-auto">
+              Langkah demi langkah hingga stiker sampai di tangan kamu
+            </p>
+          </div>
+          <div id="process-grid" class="grid gap-6">
+            <!-- Skeleton Loading Placeholder -->
+            <div class="p-7 rounded-2xl bg-gray-100 border border-gray-200 space-y-4 animate-pulse">
+              <div class="w-16 h-16 rounded-2xl bg-gray-200 mx-auto"></div>
+              <div class="h-4 bg-gray-200 rounded w-1/2 mx-auto"></div>
+              <div class="h-3 bg-gray-200 rounded w-3/4 mx-auto"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider max-w-4xl mx-auto"></div>
+
+      <!-- PESAN STIKER -->
+      <section id="pesan" class="py-24 px-4">
+        <div class="max-w-3xl mx-auto">
+          <div class="text-center mb-12 reveal">
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-accent/20 bg-accent/10 text-accentDark text-xs font-medium mb-4">
+              PESAN
+            </div>
+            <h2 class="text-4xl md:text-5xl font-bold gradient-text mb-4">
+              Pesan Stiker
+            </h2>
+            <p class="text-muted text-lg">
+              Isi form di bawah untuk melakukan pemesanan
+            </p>
+          </div>
+          <div class="glass-card p-8 md:p-10 reveal">
+            <form id="order-form" class="space-y-5">
+              <div class="grid md:grid-cols-2 gap-5">
+                <div>
+                  <label for="order-name" class="block text-sm font-medium text-ink mb-1.5">Nama Lengkap *</label>
+                  <input
+                    type="text"
+                    id="order-name"
+                    required
+                    class="input-dark"
+                    placeholder="Masukkan nama kamu"
+                  />
+                </div>
+                <div>
+                  <label for="order-wa" class="block text-sm font-medium text-ink mb-1.5">Nomor WhatsApp *</label>
+                  <input
+                    type="tel"
+                    id="order-wa"
+                    required
+                    class="input-dark"
+                    placeholder="08xxxxxxxxxx"
+                  />
+                </div>
+              </div>
+              <div class="grid md:grid-cols-2 gap-5">
+                <div>
+                  <label for="order-product" class="block text-sm font-medium text-ink mb-1.5">Pilih Produk *</label>
+                  <select
+                    id="order-product"
+                    required
+                    class="select-dark"
+                  >
+                    <option value="">-- Pilih Stiker --</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="order-qty" class="block text-sm font-medium text-ink mb-1.5">Jumlah (pcs) *</label>
+                  <input
+                    type="number"
+                    id="order-qty"
+                    required
+                    min="1"
+                    value="1"
+                    class="input-dark"
+                  />
+                </div>
+              </div>
+              <div>
+                <label for="order-payment" class="block text-sm font-medium text-ink mb-1.5">Metode Pembayaran *</label>
+                <select id="order-payment" required class="select-dark">
+                  <option value="bayar_di_tempat">Bayar di Tempat (COD)</option>
+                  <option value="transfer">Transfer Bank / QRIS</option>
+                </select>
+              </div>
+              <div>
+                <label for="order-design" class="block text-sm font-medium text-ink mb-1.5">Upload Gambar Desain (opsional)</label>
+                <div class="relative">
+                  <input
+                    type="file"
+                    id="order-design"
+                    accept="image/*"
+                    class="input-dark text-sm"
+                  />
+                </div>
+                <p class="text-xs text-soft mt-1">Format: JPG, PNG, WEBP. Desain juga bisa dikirim via chat WhatsApp.</p>
+              </div>
+              <div>
+                <label for="order-notes" class="block text-sm font-medium text-ink mb-1.5">Catatan (opsional)</label>
+                <textarea
+                  id="order-notes"
+                  class="input-dark"
+                  placeholder="Warna, jumlah cetak, permintaan khusus..."
+                ></textarea>
+              </div>
+              <div class="flex items-center justify-between p-5 rounded-xl bg-accent/10 border border-accent/20">
+                <span class="text-muted">Estimasi Total:</span>
+                <span id="order-total" class="text-2xl font-bold gradient-text">Rp 0</span>
+              </div>
+              <div class="flex flex-col sm:flex-row gap-3">
+                <button
+                  type="submit"
+                  class="btn-primary flex-1 justify-center text-base py-3.5"
+                >
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  Pesan via Website
+                </button>
+                <button
+                  type="button"
+                  id="btn-order-wa"
+                  class="btn-whatsapp flex-1 justify-center text-base py-3.5"
+                >
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z" />
+                  </svg>
+                  Pesan via WhatsApp
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div class="section-divider max-w-4xl mx-auto"></div>
+
+    <!-- FOOTER -->
+    <footer class="footer-gradient py-16 px-4 mt-12">
+      <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-8 text-sm text-ink">
+        <div>
+          <h3 class="text-lg font-bold gradient-text mb-3">SticTech.</h3>
+          <p class="text-muted leading-relaxed">
+            Stiker vinyl premium untuk mahasiswa dan UMKM.
+          </p>
+          <p class="mt-3 text-muted">
+            Instagram: @sticktech.meisyaprinting
+          </p>
+        </div>
+        <div>
+          <h4 class="font-semibold text-ink mb-3">Menu</h4>
+          <div class="space-y-2">
+            <a href="index.html" class="block text-muted hover:text-accentDark transition">Beranda</a>
+            <a href="galeri.html" class="block text-muted hover:text-accentDark transition">Galeri</a>
+            <a href="tentang.html" class="block text-muted hover:text-accentDark transition">Tentang Kami</a>
+            <a href="kontak.html" class="block text-muted hover:text-accentDark transition">Kontak</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="font-semibold text-ink mb-3">Lokasi</h4>
+          <p class="text-muted">Depan Kampus FAPERTA Unimor</p>
+          <p class="mt-2 text-muted">Senin - Sabtu: 08.00 - 17.00</p>
+        </div>
+      </div>
+      <div class="section-divider max-w-4xl mx-auto my-8"></div>
+      <p class="text-center text-xs text-soft">&copy; <span data-year></span> SticTech. Dibuat oleh Kelompok-1 Kewirausahaan.</p>
+    </footer>
+
+    <!-- BACK TO TOP -->
+    <button
+      class="back-to-top"
+      id="backToTop"
+      aria-label="Kembali ke atas"
+      onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
+    >
+      <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+        <path d="M5 15l7-7 7 7" />
+      </svg>
+    </button>
+  </body>
+</html>

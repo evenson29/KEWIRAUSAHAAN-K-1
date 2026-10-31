@@ -1,0 +1,771 @@
+﻿<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Panel Admin SticTech - kelola pesanan, keuangan, produk, proses kerja, galeri, dan proyeksi keuangan." />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Admin Panel - SticTech</title>
+    <link rel="icon" type="image/jpeg" href="assets/logo.jpg" />
+    <link rel="stylesheet" href="css/tailwind.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+    <script src="vendor/xlsx.full.min.js" defer></script>
+    <script src="js/config.js" defer></script>
+    <script src="js/app.js" defer></script>
+    <script src="js/admin.js" defer></script>
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Lompat ke konten utama</a>
+    <div class="particles" id="particles"></div>
+
+    <nav class="navbar-blur fixed top-0 left-0 right-0 z-50" id="navbar">
+      <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+        <a href="index.html" class="flex items-center gap-2">
+          <img
+            src="assets/logo.jpg"
+            alt="SticTech Logo"
+            class="h-12 w-auto rounded-xl"
+            onerror="this.style.display = 'none'; this.nextElementSibling.style.display = 'inline';"
+          />
+          <span class="text-xl font-bold gradient-text" style="display: none">SticTech.</span>
+        </a>
+        <div class="nav-desktop flex items-center gap-2">
+          <a href="index.html" class="nav-link">Beranda</a>
+          <a href="index.html#pesan" class="nav-link">Pesan</a>
+          <a href="galeri.html" class="nav-link">Galeri</a>
+          <a href="admin.html" class="nav-link active">Admin Panel</a>
+        </div>
+        <button
+          class="hamburger"
+          id="hamburger-btn"
+          aria-label="Buka Menu Navigasi"
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+        >
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+      <div class="nav-mobile flex md:hidden" id="mobile-nav" role="navigation" aria-label="Navigasi Seluler">
+        <a href="index.html" class="nav-link">Beranda</a>
+        <a href="index.html#pesan" class="nav-link">Pesan</a>
+        <a href="galeri.html" class="nav-link">Galeri</a>
+        <a href="admin.html" class="nav-link active">Admin Panel</a>
+      </div>
+    </nav>
+
+    <main class="pt-36 pb-20 px-4" id="main-content">
+      <div class="max-w-6xl mx-auto">
+        <!-- LOGIN -->
+        <div id="login-section" class="max-w-md mx-auto">
+          <div class="glass-card p-8 relative overflow-hidden">
+            <div
+              class="hero-glow animate-pulse-glow"
+              style="width: 300px; height: 300px; background: radial-gradient(circle, rgba(0, 173, 181, 0.25), transparent); top: -100px; right: -100px; position: absolute; border-radius: 50%; filter: blur(80px); pointer-events: none;"
+            ></div>
+            <div
+              class="hero-glow animate-pulse-glow"
+              style="width: 250px; height: 250px; background: radial-gradient(circle, rgba(0, 173, 181, 0.2), transparent); bottom: -80px; left: -80px; position: absolute; border-radius: 50%; filter: blur(80px); pointer-events: none;"
+            ></div>
+            <div class="text-center mb-8 relative z-10">
+              <div class="badge badge-purple mx-auto mb-4 animate-fade-in-down" style="width: fit-content">
+                ADMIN
+              </div>
+              <img
+                src="assets/logo.jpg"
+                alt="SticTech Logo"
+                class="w-16 h-16 mx-auto rounded-xl mb-3 shadow"
+                onerror="this.style.display = 'none'"
+              />
+              <h2 class="text-3xl font-bold gradient-text animate-fade-in-up stagger-1">
+                Admin Panel
+              </h2>
+              <p class="text-muted text-sm mt-2 animate-fade-in-up stagger-2">
+                Masukkan kredensial admin untuk mengakses dashboard
+              </p>
+            </div>
+            <form id="login-form" class="space-y-4 relative z-10 animate-fade-in-up stagger-3">
+              <div>
+                <label for="login-user" class="block text-sm font-medium text-ink mb-1.5">Email Admin</label>
+                <input
+                  type="email"
+                  id="login-user"
+                  required
+                  class="input-dark"
+                  placeholder="admin@example.com"
+                  autocomplete="username"
+                />
+              </div>
+              <div>
+                <label for="login-pass" class="block text-sm font-medium text-ink mb-1.5">Password</label>
+                <input
+                  type="password"
+                  id="login-pass"
+                  required
+                  class="input-dark"
+                  placeholder="Masukkan password"
+                  autocomplete="current-password"
+                />
+              </div>
+              <button
+                type="submit"
+                id="login-btn"
+                class="btn-primary w-full justify-center text-base py-3"
+              >
+                Masuk
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <!-- DASHBOARD -->
+        <div id="dashboard-section" class="hidden space-y-6">
+          <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pt-2">
+            <div class="reveal">
+              <h1 class="text-3xl font-bold text-ink mb-1">
+                Dashboard Admin
+              </h1>
+              <p class="text-muted text-sm">
+                Kelola pesanan, keuangan, produk, dan portofolio SticTech
+              </p>
+            </div>
+            <button id="logout-btn" class="btn-danger reveal">
+              Logout
+            </button>
+          </div>
+
+          <!-- STATS -->
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 reveal">
+            <div class="stat-card">
+              <p class="text-muted text-xs mb-1">Pesanan Baru</p>
+              <p id="stat-orders" class="text-3xl font-bold text-amber-600">
+                0
+              </p>
+            </div>
+            <div class="stat-card">
+              <p class="text-muted text-xs mb-1">Total Pemasukan</p>
+              <p id="stat-income" class="text-3xl font-bold text-emerald-600">
+                Rp 0
+              </p>
+            </div>
+            <div class="stat-card">
+              <p class="text-muted text-xs mb-1">Total Pengeluaran</p>
+              <p id="stat-expense" class="text-3xl font-bold text-rose-600">
+                Rp 0
+              </p>
+            </div>
+            <div class="stat-card">
+              <p class="text-muted text-xs mb-1">Profit</p>
+              <p id="stat-profit" class="text-3xl font-bold text-accentDark">
+                Rp 0
+              </p>
+            </div>
+          </div>
+
+          <!-- TABS -->
+          <div class="flex gap-2 flex-wrap reveal" role="tablist">
+            <button
+              class="tab-btn active"
+              onclick="switchTab('orders')"
+              data-tab="orders"
+              role="tab"
+              aria-selected="true"
+            >
+              Pesanan
+            </button>
+            <button
+              class="tab-btn"
+              onclick="switchTab('finance')"
+              data-tab="finance"
+              role="tab"
+              aria-selected="false"
+            >
+              Keuangan
+            </button>
+            <button
+              class="tab-btn"
+              onclick="switchTab('products')"
+              data-tab="products"
+              role="tab"
+              aria-selected="false"
+            >
+              Produk
+            </button>
+            <button
+              class="tab-btn"
+              onclick="switchTab('process')"
+              data-tab="process"
+              role="tab"
+              aria-selected="false"
+            >
+              Proses Kerja
+            </button>
+            <button
+              class="tab-btn"
+              onclick="switchTab('galeri')"
+              data-tab="galeri"
+              role="tab"
+              aria-selected="false"
+            >
+              Galeri
+            </button>
+            <button
+              class="tab-btn"
+              onclick="switchTab('projection')"
+              data-tab="projection"
+              role="tab"
+              aria-selected="false"
+            >
+              Proyeksi Keuangan
+            </button>
+          </div>
+
+          <!-- TAB: PESANAN -->
+          <div id="tab-orders" class="space-y-4" role="tabpanel">
+            <div class="flex flex-col sm:flex-row gap-3">
+              <input
+                type="text"
+                id="search-order"
+                class="input-dark flex-1"
+                placeholder="Cari pesanan (nama, produk, wa)..."
+                oninput="renderOrders()"
+              />
+              <select
+                id="filter-status"
+                class="select-dark sm:w-48"
+                onchange="renderOrders()"
+              >
+                <option value="semua">Semua Status</option>
+                <option value="diterima">Diterima</option>
+                <option value="dicetak">Dicetak</option>
+                <option value="selesai">Selesai</option>
+                <option value="diambil">Diambil</option>
+              </select>
+            </div>
+            <div class="glass-card table-responsive">
+              <table class="table-dark">
+                <thead>
+                  <tr>
+                    <th>Pelanggan</th>
+                    <th>Produk</th>
+                    <th>Jumlah</th>
+                    <th>Total</th>
+                    <th>Pembayaran</th>
+                    <th>Status</th>
+                    <th>Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="orders-table"></tbody>
+              </table>
+              <div
+                id="orders-empty"
+                class="text-center py-12 text-muted hidden"
+              >
+                Belum ada data pesanan
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB: KEUANGAN -->
+          <div id="tab-finance" class="hidden space-y-4" role="tabpanel">
+            <div class="glass-card p-6">
+              <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4">
+                <h3 class="font-semibold text-ink">Tambah Transaksi</h3>
+                <button
+                  type="button"
+                  onclick="downloadExcel()"
+                  class="btn-primary btn-sm text-xs"
+                >
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                  Download Laporan Excel
+                </button>
+              </div>
+              <form id="add-transaction" class="grid md:grid-cols-4 gap-4">
+                <input
+                  type="text"
+                  id="tx-desc"
+                  placeholder="Keterangan transaksi"
+                  required
+                  class="input-dark"
+                />
+                <select id="tx-type" class="select-dark">
+                  <option value="pemasukan">Pemasukan</option>
+                  <option value="pengeluaran">Pengeluaran</option>
+                </select>
+                <input
+                  type="number"
+                  id="tx-amount"
+                  placeholder="Nominal (Rp)"
+                  required
+                  min="0"
+                  class="input-dark"
+                />
+                <button type="submit" class="btn-success justify-center">
+                  Simpan Transaksi
+                </button>
+              </form>
+            </div>
+            <div class="glass-card table-responsive">
+              <table class="table-dark">
+                <thead>
+                  <tr>
+                    <th>Tanggal</th>
+                    <th>Keterangan</th>
+                    <th>Jenis</th>
+                    <th>Nominal</th>
+                    <th>Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="finance-table"></tbody>
+              </table>
+              <div
+                id="finance-empty"
+                class="text-center py-12 text-muted hidden"
+              >
+                Belum ada riwayat transaksi
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB: PRODUK -->
+          <div id="tab-products" class="hidden space-y-4" role="tabpanel">
+            <div class="glass-card p-6">
+              <h3 class="font-semibold text-ink mb-4">Tambah Produk Baru</h3>
+              <form id="add-product" class="grid md:grid-cols-5 gap-4 items-end">
+                <input
+                  type="text"
+                  id="prod-name"
+                  placeholder="Nama produk"
+                  required
+                  class="input-dark"
+                />
+                <input
+                  type="text"
+                  id="prod-desc"
+                  placeholder="Deskripsi singkat"
+                  required
+                  class="input-dark"
+                />
+                <input
+                  type="number"
+                  id="prod-price"
+                  placeholder="Harga (Rp)"
+                  required
+                  min="0"
+                  class="input-dark"
+                />
+                <input
+                  type="file"
+                  id="prod-image"
+                  accept="image/*"
+                  class="input-dark text-xs"
+                />
+                <button type="submit" class="btn-success justify-center">
+                  Tambah Produk
+                </button>
+              </form>
+            </div>
+            <div class="glass-card table-responsive">
+              <table class="table-dark">
+                <thead>
+                  <tr>
+                    <th>Gambar</th>
+                    <th>Nama</th>
+                    <th>Deskripsi</th>
+                    <th>Harga</th>
+                    <th>Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="products-table"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- TAB: PROSES KERJA -->
+          <div id="tab-process" class="hidden space-y-4" role="tabpanel">
+            <div class="glass-card p-6">
+              <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4">
+                <div>
+                  <h3 class="font-semibold text-ink text-lg">
+                    Kelola Langkah Proses Kerja
+                  </h3>
+                  <p class="text-muted text-sm mt-1">
+                    Tambah, edit, atau ubah urutan proses kerja
+                  </p>
+                </div>
+                <div class="flex gap-2">
+                  <button
+                    type="button"
+                    onclick="addProcessStep()"
+                    class="btn-primary btn-sm text-xs"
+                  >
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                      <path d="M12 4v16m8-8H4" />
+                    </svg>
+                    Tambah Langkah
+                  </button>
+                  <button
+                    type="button"
+                    onclick="saveProcessSteps()"
+                    class="btn-success btn-sm text-xs"
+                  >
+                    Simpan Perubahan
+                  </button>
+                </div>
+              </div>
+              <div id="process-count" class="text-sm text-soft mb-4"></div>
+              <div id="process-steps-form" class="grid md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+            </div>
+            <div class="glass-card table-responsive">
+              <table class="table-dark">
+                <thead>
+                  <tr>
+                    <th>Gambar</th>
+                    <th>Urutan</th>
+                    <th>Judul</th>
+                    <th>Deskripsi</th>
+                    <th>Warna</th>
+                    <th>Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="process-table"></tbody>
+              </table>
+              <div id="process-empty" class="text-center py-12 text-muted hidden">
+                Belum ada langkah proses kerja
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB: GALERI -->
+          <div id="tab-galeri" class="hidden space-y-4" role="tabpanel">
+            <div class="glass-card p-6">
+              <h3 class="font-semibold text-ink mb-4">Tambah Foto Portofolio</h3>
+              <form id="add-galeri" class="grid md:grid-cols-4 gap-4 items-end">
+                <input
+                  type="text"
+                  id="galeri-judul"
+                  placeholder="Judul stiker / foto"
+                  required
+                  class="input-dark"
+                />
+                <select id="galeri-kategori" class="select-dark">
+                  <option value="logo">Logo</option>
+                  <option value="karakter">Karakter</option>
+                  <option value="text">Text</option>
+                  <option value="custom">Custom</option>
+                </select>
+                <input
+                  type="file"
+                  id="galeri-image"
+                  accept="image/*"
+                  required
+                  class="input-dark text-xs"
+                />
+                <button type="submit" class="btn-success justify-center">
+                  Tambah ke Galeri
+                </button>
+              </form>
+            </div>
+            <div class="glass-card table-responsive">
+              <table class="table-dark">
+                <thead>
+                  <tr>
+                    <th>Foto</th>
+                    <th>Judul</th>
+                    <th>Kategori</th>
+                    <th>Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="galeri-table"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- TAB: PROYEKSI KEUANGAN -->
+          <div id="tab-projection" class="hidden space-y-6" role="tabpanel">
+            <div id="proj-form" class="space-y-6">
+              <!-- ESTIMASI MODAL AWAL -->
+              <div class="glass-card p-6">
+                <div class="flex justify-between items-center mb-4">
+                  <h3 class="font-semibold text-ink">
+                    Estimasi Modal Awal
+                  </h3>
+                  <button
+                    type="button"
+                    id="save-projection"
+                    class="btn-success btn-sm text-xs"
+                  >
+                    Simpan Semua
+                  </button>
+                </div>
+                <div class="grid md:grid-cols-3 gap-4">
+                  <div class="stat-card">
+                    <label for="proj-equip" class="text-xs text-muted mb-2 block">Peralatan</label>
+                    <input
+                      type="number"
+                      id="proj-equip"
+                      class="input-dark text-lg font-bold"
+                      value="5000000"
+                      min="0"
+                    />
+                    <p class="text-xs text-soft mt-1">
+                      Mesin cetak, komputer, dll
+                    </p>
+                  </div>
+                  <div class="stat-card">
+                    <label for="proj-material" class="text-xs text-muted mb-2 block">Bahan Baku</label>
+                    <input
+                      type="number"
+                      id="proj-material"
+                      class="input-dark text-lg font-bold"
+                      value="1000000"
+                      min="0"
+                    />
+                    <p class="text-xs text-soft mt-1">
+                      Vinyl, tinta, kertas, dll
+                    </p>
+                  </div>
+                  <div class="stat-card">
+                    <label for="proj-promo" class="text-xs text-muted mb-2 block">Promosi</label>
+                    <input
+                      type="number"
+                      id="proj-promo"
+                      class="input-dark text-lg font-bold"
+                      value="500000"
+                      min="0"
+                    />
+                    <p class="text-xs text-soft mt-1">
+                      Brosur, spanduk, iklan
+                    </p>
+                  </div>
+                </div>
+                <div class="mt-4 p-4 rounded-xl bg-accent/10 border border-accent/20 flex justify-between items-center">
+                  <span class="text-ink font-medium">Total Modal Awal</span>
+                  <span id="proj-total-modal" class="text-3xl font-extrabold gradient-text">Rp 6.500.000</span>
+                </div>
+              </div>
+
+              <!-- BIAYA OPERASIONAL RUTIN -->
+              <div class="glass-card p-6">
+                <h3 class="font-semibold text-ink mb-4">
+                  Biaya Operasional Bulanan
+                </h3>
+                <div class="grid md:grid-cols-3 gap-4">
+                  <div class="stat-card">
+                    <label for="proj-prod-cost" class="text-xs text-muted mb-2 block">Produksi</label>
+                    <input
+                      type="number"
+                      id="proj-prod-cost"
+                      class="input-dark text-lg font-bold"
+                      value="500000"
+                      min="0"
+                    />
+                    <p class="text-xs text-soft mt-1">
+                      Listrik, bahan habis
+                    </p>
+                  </div>
+                  <div class="stat-card">
+                    <label for="proj-dist-cost" class="text-xs text-muted mb-2 block">Distribusi</label>
+                    <input
+                      type="number"
+                      id="proj-dist-cost"
+                      class="input-dark text-lg font-bold"
+                      value="200000"
+                      min="0"
+                    />
+                    <p class="text-xs text-soft mt-1">Ongkir, kemasan</p>
+                  </div>
+                  <div class="stat-card">
+                    <label for="proj-ad-cost" class="text-xs text-muted mb-2 block">Iklan / Promosi</label>
+                    <input
+                      type="number"
+                      id="proj-ad-cost"
+                      class="input-dark text-lg font-bold"
+                      value="300000"
+                      min="0"
+                    />
+                    <p class="text-xs text-soft mt-1">
+                      Iklan IG, promosi online
+                    </p>
+                  </div>
+                </div>
+                <div class="mt-4 p-4 rounded-xl bg-amber-500/15 border border-amber-500/25 flex justify-between items-center">
+                  <span class="text-ink font-medium">Total Biaya Operasional/Bulan</span>
+                  <span id="proj-total-opex" class="text-3xl font-extrabold text-amber-600">Rp 1.000.000</span>
+                </div>
+              </div>
+
+              <!-- ESTIMASI PENDAPATAN -->
+              <div class="glass-card p-6">
+                <h3 class="font-semibold text-ink mb-4">
+                  Estimasi Pendapatan
+                </h3>
+                <div class="grid md:grid-cols-3 gap-4">
+                  <div class="stat-card">
+                    <label for="proj-units-day" class="text-xs text-muted mb-2 block">Stiker Terjual/Hari</label>
+                    <input
+                      type="number"
+                      id="proj-units-day"
+                      class="input-dark text-lg font-bold"
+                      value="50"
+                      min="0"
+                    />
+                  </div>
+                  <div class="stat-card">
+                    <label for="proj-price" class="text-xs text-muted mb-2 block">Harga Jual Rata-rata (Rp)</label>
+                    <input
+                      type="number"
+                      id="proj-price"
+                      class="input-dark text-lg font-bold"
+                      value="1000"
+                      min="0"
+                    />
+                  </div>
+                  <div class="stat-card">
+                    <label for="proj-days" class="text-xs text-muted mb-2 block">Hari Kerja/Bulan</label>
+                    <input
+                      type="number"
+                      id="proj-days"
+                      class="input-dark text-lg font-bold"
+                      value="25"
+                      min="0"
+                    />
+                  </div>
+                </div>
+                <div class="grid md:grid-cols-3 gap-4 mt-4">
+                  <div class="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-center">
+                    <p class="text-xs text-muted mb-1">Pendapatan/Hari</p>
+                    <p id="proj-inc-day" class="text-2xl font-bold text-emerald-600">Rp 50.000</p>
+                  </div>
+                  <div class="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-center">
+                    <p class="text-xs text-muted mb-1">Pendapatan/Bulan</p>
+                    <p id="proj-inc-month" class="text-2xl font-bold text-emerald-600">Rp 1.250.000</p>
+                  </div>
+                  <div class="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-center">
+                    <p class="text-xs text-muted mb-1">Pendapatan/Tahun</p>
+                    <p id="proj-inc-year" class="text-2xl font-bold text-emerald-600">Rp 15.000.000</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- PROYEKSI LABA RUGI -->
+              <div class="glass-card p-6">
+                <h3 class="font-semibold text-ink mb-4">
+                  Proyeksi Laba Rugi (Bulanan)
+                </h3>
+                <div class="space-y-3">
+                  <div class="flex justify-between items-center p-3 rounded-lg bg-gray-50">
+                    <span class="text-muted">Pendapatan Bulanan</span>
+                    <span id="proj-income" class="font-bold text-emerald-600">Rp 1.250.000</span>
+                  </div>
+                  <div class="flex justify-between items-center p-3 rounded-lg bg-gray-50">
+                    <span class="text-muted">(-) Biaya Operasional</span>
+                    <span id="proj-expense" class="font-bold text-rose-600">- Rp 1.000.000</span>
+                  </div>
+                  <div class="section-divider"></div>
+                  <div class="flex justify-between items-center p-4 rounded-xl bg-accent/10 border border-accent/20">
+                    <span class="text-ink font-semibold">LABA BERSIH/BULAN</span>
+                    <span id="proj-profit" class="text-3xl font-extrabold gradient-text">Rp 250.000</span>
+                  </div>
+                  <div class="flex justify-between items-center p-3 rounded-lg bg-gray-50">
+                    <span class="text-muted">Laba Bersih/Tahun</span>
+                    <span id="proj-profit-year" class="font-bold text-accentDark">Rp 3.000.000</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- BREAK EVEN POINT -->
+              <div class="glass-card p-6">
+                <h3 class="font-semibold text-ink mb-4">
+                  Break Even Point (BEP)
+                </h3>
+                <div class="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <p class="text-sm text-muted mb-3">
+                      BEP = Biaya Tetap / (Harga Jual - Biaya Variabel per Unit)
+                    </p>
+                    <div class="space-y-2">
+                      <div class="flex justify-between text-sm">
+                        <span class="text-muted">Biaya Operasional/Bulan</span>
+                        <span id="be-opex" class="text-ink font-medium">Rp 1.000.000</span>
+                      </div>
+                      <div class="flex justify-between text-sm">
+                        <span class="text-muted">Harga Jual/Unit</span>
+                        <span id="be-price" class="text-ink font-medium">Rp 1.000</span>
+                      </div>
+                      <div class="flex justify-between text-sm">
+                        <span class="text-muted">Biaya Bahan/Unit (est. 40%)</span>
+                        <span id="be-cost-unit" class="text-ink font-medium">Rp 400</span>
+                      </div>
+                      <div class="flex justify-between text-sm">
+                        <span class="text-muted">Margin/Unit</span>
+                        <span id="be-margin" class="text-ink font-medium">Rp 600</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="flex flex-col items-center justify-center p-6 rounded-xl bg-gray-50 border border-gray-200">
+                    <p class="text-xs text-muted mb-2">Minimal Penjualan/Bulan</p>
+                    <p id="be-result" class="text-5xl font-extrabold gradient-text mb-2">1.667</p>
+                    <p class="text-sm text-muted">stiker/bulan untuk balik modal</p>
+                    <div id="be-status" class="mt-4 px-4 py-2 rounded-full text-sm font-semibold badge-green">
+                      Di atas BEP = LABA
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="text-center">
+                <button type="button" onclick="downloadProyeksi()" class="btn-primary">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                  Download Proyeksi Keuangan (Excel)
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- BACK TO TOP -->
+    <button
+      class="back-to-top"
+      id="backToTop"
+      aria-label="Kembali ke atas"
+      onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
+    >
+      <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+        <path d="M5 15l7-7 7 7" />
+      </svg>
+    </button>
+
+    <!-- MODAL EDIT UMUM -->
+    <div
+      id="edit-modal"
+      class="modal-overlay hidden"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-title"
+    >
+      <div
+        class="glass-card p-6 w-full max-w-md mx-4 space-y-4 animate-scale-in"
+        onclick="event.stopPropagation()"
+      >
+        <h3 class="font-bold text-lg text-ink" id="modal-title">Edit Data</h3>
+        <div id="modal-body"></div>
+        <div class="section-divider"></div>
+        <div class="flex gap-3 justify-end">
+          <button type="button" id="modal-close" class="btn-secondary btn-sm">
+            Batal
+          </button>
+          <button type="button" id="modal-save" class="btn-primary btn-sm">
+            Simpan
+          </button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

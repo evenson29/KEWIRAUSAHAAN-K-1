@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Hubungi SticTech - Stiker vinyl premium anti air. WhatsApp, Instagram, dan lokasi di depan Kampus FAPERTA Unimor." />
+  <link rel="canonical" href="https://DOMAIN-ANDA.infinityfreeapp.com/kontak.html" />
+  <meta property="og:title" content="Hubungi Kami - SticTech" />
+  <meta property="og:description" content="Kami siap membantu Anda. Kirim pesan atau kunjungi langsung lokasi kami." />
+  <meta property="og:image" content="https://DOMAIN-ANDA.infinityfreeapp.com/assets/logo.jpg" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" type="image/png" href="assets/logo-256.png" />
+  <link rel="stylesheet" href="css/tailwind.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/config.js" defer></script>
+  <script src="js/app.js" defer></script>
+  <script src="js/contact.js" defer></script>
+</head>
+<body>
+  <a href="index.html" class="skip-link">Lompat ke konten utama</a>
+  <div class="particles" id="particles"></div>
+
+  <nav class="navbar-blur fixed top-0 left-0 right-0 z-50" id="navbar">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+      <a href="index.html" class="flex items-center gap-2"><img src="assets/logo.jpg" alt="SticTech Logo" class="h-12 w-auto rounded-xl" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span class="text-xl font-bold gradient-text" style="display:none">SticTech.</span></a>
+      <div class="nav-desktop flex items-center gap-1">
+        <a href="index.html" class="nav-link">Beranda</a>
+        <a href="index.html#pesan" class="nav-link">Pesan</a>
+        <a href="galeri.html" class="nav-link">Galeri</a>
+        <a href="tentang.html" class="nav-link">Tentang</a>
+        <a href="kontak.html" class="nav-link active">Kontak</a>
+        <a href="admin.html" class="btn-primary btn-sm text-xs ml-2">Admin</a>
+      </div>
+      <button class="hamburger" onclick="toggleMobileNav()"><span></span><span></span><span></span></button>
+    </div>
+    <div class="nav-mobile flex md:hidden">
+      <a href="index.html" class="nav-link">Beranda</a>
+      <a href="index.html#pesan" class="nav-link">Pesan</a>
+      <a href="galeri.html" class="nav-link">Galeri</a>
+      <a href="tentang.html" class="nav-link">Tentang</a>
+      <a href="kontak.html" class="nav-link active">Kontak</a>
+      <a href="admin.html" class="nav-link">Admin</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="relative pt-36 pb-20 px-4 min-h-[45vh] flex items-center">
+    <div class="hero-glow animate-pulse-glow" style="background:#00ADB5;top:-200px;left:-100px"></div>
+    <div class="hero-glow animate-pulse-glow" style="background:#a855f7;top:-100px;right:-150px;animation-delay:1.5s"></div>
+    <div class="hero-glow animate-pulse-glow" style="background:#FFD200;bottom:-200px;left:50%;animation-delay:3s;width:400px;height:400px"></div>
+    <div class="max-w-6xl mx-auto text-center relative z-10">
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#00ADB5]/20 bg-[#00ADB5]/10 text-[#00838F] text-xs font-medium mb-4 animate-fade-in-down badge">
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+        HUBUNGI KAMI
+      </div>
+      <h1 class="text-5xl md:text-6xl font-extrabold gradient-text mb-4 animate-fade-in-up">Hubungi Kami</h1>
+      <p class="text-[#555555] max-w-xl mx-auto animate-fade-in-up stagger-1 text-lg">Kami siap membantu kamu. Kirim pesan atau kunjungi langsung lokasi kami!</p>
+    </div>
+  </section>
+
+  <!-- KONTEN KONTAK -->
+  <section class="py-12 px-4">
+    <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-10">
+      <!-- KIRI: Contact Cards -->
+      <div class="space-y-5">
+        <!-- WhatsApp -->
+        <div class="glass-card p-6 flex items-start gap-4 reveal">
+          <div class="w-12 h-12 rounded-xl flex-shrink-0 flex items-center justify-center" style="background:linear-gradient(135deg,rgba(37,211,102,0.15),rgba(16,185,129,0.15));border:1px solid rgba(37,211,102,0.2);">
+            <svg class="w-6 h-6 text-[#059669]" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+          </div>
+          <div>
+            <h3 class="font-semibold text-[#2D2D2D] mb-1">WhatsApp</h3>
+            <a href="https://wa.me/6281237057696" target="_blank" class="text-sm text-[#059669] hover:underline transition">+62 812-3705-7696</a>
+            <p class="text-xs mt-1 text-[#888888]">Klik untuk chat langsung</p>
+          </div>
+        </div>
+
+        <!-- Instagram -->
+        <div class="glass-card p-6 flex items-start gap-4 reveal stagger-1">
+          <div class="w-12 h-12 rounded-xl flex-shrink-0 flex items-center justify-center" style="background:linear-gradient(135deg,rgba(168,85,247,0.15),rgba(236,72,153,0.15));border:1px solid rgba(168,85,247,0.2);">
+            <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+          </div>
+          <div>
+            <h3 class="font-semibold text-[#2D2D2D] mb-1">Instagram</h3>
+            <a href="https://instagram.com/sticktech.meisyaprinting" target="_blank" class="text-sm text-[#7C3AED] hover:underline transition">@sticktech.meisyaprinting</a>
+            <p class="text-xs mt-1 text-[#888888]">Follow untuk update produk terbaru</p>
+          </div>
+        </div>
+
+        <!-- Lokasi -->
+        <div class="glass-card p-6 flex items-start gap-4 reveal stagger-2">
+          <div class="w-12 h-12 rounded-xl flex-shrink-0 flex items-center justify-center" style="background:linear-gradient(135deg,rgba(59,130,246,0.15),rgba(6,182,212,0.15));border:1px solid rgba(59,130,246,0.2);">
+            <svg class="w-6 h-6 text-[#00838F]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <h3 class="font-semibold text-[#2D2D2D] mb-1">Lokasi</h3>
+            <p class="text-sm text-[#555555]">Depan Kampus FAPERTA Unimor</p>
+            <p class="text-xs mt-1 text-[#888888]">Kabupaten Timor Tengah Utara, NTT</p>
+          </div>
+        </div>
+
+        <!-- Jam Operasional -->
+        <div class="glass-card p-6 flex items-start gap-4 reveal stagger-3">
+          <div class="w-12 h-12 rounded-xl flex-shrink-0 flex items-center justify-center" style="background:linear-gradient(135deg,rgba(245,158,11,0.15),rgba(234,179,8,0.15));border:1px solid rgba(245,158,11,0.2);">
+            <svg class="w-6 h-6 text-[#D97706]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div>
+            <h3 class="font-semibold text-[#2D2D2D] mb-1">Jam Operasional</h3>
+            <p class="text-sm text-[#555555]">Senin - Sabtu</p>
+            <p class="text-xs mt-1 text-[#888888]">08.00 - 17.00 WITA</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- KANAN: Form + Maps -->
+      <div class="space-y-6">
+        <!-- Form -->
+        <div class="glass-card p-8 reveal">
+          <h3 class="text-xl font-bold text-[#2D2D2D] mb-1">Kirim Pesan</h3>
+          <p class="text-sm mb-6 text-[#888888]">Isi form di bawah, pesan akan dikirim via WhatsApp</p>
+          <form id="contact-form" class="space-y-4">
+            <div>
+              <label class="block text-sm font-medium text-[#2D2D2D] mb-1.5">Nama Lengkap *</label>
+              <input type="text" id="contact-name" required class="input-dark" placeholder="Masukkan nama kamu" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-[#2D2D2D] mb-1.5">Nomor WhatsApp</label>
+              <input type="tel" id="contact-phone" class="input-dark" placeholder="08xxxxxxxxxx" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-[#2D2D2D] mb-1.5">Subjek *</label>
+              <select id="contact-subject" required class="select-dark">
+                <option value="">-- Pilih Subjek --</option>
+                <option value="Pemesanan Stiker">Pemesanan Stiker</option>
+                <option value="Konsultasi Desain">Konsultasi Desain</option>
+                <option value="Harga & Pembayaran">Harga & Pembayaran</option>
+                <option value="Kerja Sama / Reseller">Kerja Sama / Reseller</option>
+                <option value="Lainnya">Lainnya</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-[#2D2D2D] mb-1.5">Pesan *</label>
+              <textarea id="contact-message" required class="input-dark" rows="4" placeholder="Tulis pesan kamu di sini..."></textarea>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-3">
+              <button type="submit" class="btn-whatsapp flex-1 justify-center text-base py-3.5">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+                Kirim via WhatsApp
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Google Maps -->
+        <div class="glass-card overflow-hidden reveal stagger-1">
+          <div class="p-4 border-b border-[#E0E0E0]">
+            <h4 class="font-semibold text-[#2D2D2D] text-sm flex items-center gap-2">
+              <svg class="w-4 h-4 text-[#00838F]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Lokasi SticTech
+            </h4>
+            <p class="text-xs mt-1 text-[#888888]">Depan Kampus FAPERTA Unimor, TTU, NTT</p>
+          </div>
+          <div class="relative bg-[#F5F5F5]" style="min-height:280px;">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3925.5!2d124.2!3d-9.4!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zOcKwMjQnMDAuMCJTIDEyNMKwMTInMDAuMCJF!5e0!3m2!1sid!2sid!4v1"
+              width="100%"
+              height="280"
+              style="border:0;"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Lokasi SticTech di Google Maps"
+            ></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 15l7-7 7 7"/></svg>
+  </button>
+
+  <footer class="footer-gradient py-16 px-4 mt-12">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-8 text-sm text-[#555555]">
+      <div><h3 class="text-lg font-bold gradient-text mb-3">SticTech.</h3><p class="text-[#555555]">Stiker vinyl premium untuk mahasiswa dan UMKM.</p></div>
+      <div><h4 class="font-semibold text-[#2D2D2D] mb-3">Menu</h4><div class="space-y-2"><a href="index.html" class="block text-[#555555] hover:text-indigo-400 transition">Beranda</a><a href="galeri.html" class="block text-[#555555] hover:text-indigo-400 transition">Galeri</a><a href="tentang.html" class="block text-[#555555] hover:text-indigo-400 transition">Tentang Kami</a><a href="kontak.html" class="block text-[#555555] hover:text-indigo-400 transition">Kontak</a></div></div>
+      <div><h4 class="font-semibold text-[#2D2D2D] mb-3">Lokasi</h4><p class="text-[#555555]">Depan Kampus FAPERTA Unimor</p><p class="text-[#555555]">Kabupaten Timor Tengah Utara, NTT</p><p class="mt-2 text-[#555555]">Senin - Sabtu: 08.00 - 17.00 WITA</p></div>
+    </div>
+    <div class="section-divider max-w-4xl mx-auto my-8"></div>
+    <p class="text-center text-xs text-[#888888]">&copy; <span data-year></span> SticTech. Dibuat oleh Kelompok Kewirausahaan.</p>
+  </footer>
+  <script>
+    initSite();
+  </script>
+  </script>
+</body>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Galeri portofolio stiker vinyl SticTech - koleksi stiker yang sudah dicetak untuk pelanggan." />
+  <link rel="canonical" href="https://sticktech.meisyaprinting.com/galeri.html" />
+  <meta property="og:title" content="Galeri Portofolio - SticTech" />
+  <meta property="og:description" content="Koleksi stiker vinyl yang sudah pernah kami cetak untuk pelanggan." />
+  <meta property="og:image" content="assets/logo.jpg" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" type="image/jpeg" href="assets/logo.jpg" />
+  <link rel="stylesheet" href="css/tailwind.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+  <script src="js/config.js" defer></script>
+  <script src="js/app.js" defer></script>
+  <script src="js/gallery.js" defer></script>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Lompat ke konten utama</a>
+  <div class="particles" id="particles"></div>
+
+  <nav class="navbar-blur fixed top-0 left-0 right-0 z-50" id="navbar">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+      <a href="index.html" class="flex items-center gap-2">
+        <img src="assets/logo.jpg" alt="SticTech Logo" class="h-12 w-auto rounded-xl" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">
+        <span class="text-xl font-bold gradient-text" style="display:none">SticTech.</span>
+      </a>
+      <div class="nav-desktop flex items-center gap-1">
+        <a href="index.html" class="nav-link">Beranda</a>
+        <a href="index.html#pesan" class="nav-link">Pesan</a>
+        <a href="galeri.html" class="nav-link active">Galeri</a>
+        <a href="tentang.html" class="nav-link">Tentang</a>
+        <a href="kontak.html" class="nav-link">Kontak</a>
+        <a href="admin.html" class="btn-primary btn-sm text-xs ml-2">Admin</a>
+      </div>
+      <button
+        class="hamburger"
+        id="hamburger-btn"
+        aria-label="Buka Menu Navigasi"
+        aria-expanded="false"
+        aria-controls="mobile-nav"
+      >
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="nav-mobile flex md:hidden" id="mobile-nav" role="navigation" aria-label="Navigasi Seluler">
+      <a href="index.html" class="nav-link">Beranda</a>
+      <a href="index.html#pesan" class="nav-link">Pesan</a>
+      <a href="galeri.html" class="nav-link active">Galeri</a>
+      <a href="tentang.html" class="nav-link">Tentang</a>
+      <a href="kontak.html" class="nav-link">Kontak</a>
+      <a href="admin.html" class="nav-link">Admin</a>
+    </div>
+  </nav>
+
+  <main id="main-content">
+    <section class="relative pt-36 pb-20 px-4 min-h-[45vh] flex items-center">
+      <div class="hero-glow animate-pulse-glow" style="background:#00ADB5;top:-200px;right:-100px"></div>
+      <div class="hero-glow animate-pulse-glow" style="background:#FFD200;top:-100px;left:-150px;animation-delay:1.5s"></div>
+      <div class="max-w-6xl mx-auto text-center relative z-10">
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-accent/20 bg-accent/10 text-accentDark text-xs font-medium mb-4 animate-fade-in-down">
+          PORTOFOLIO
+        </div>
+        <h1 class="text-5xl md:text-6xl font-extrabold gradient-text mb-4 animate-fade-in-up">Galeri Portofolio</h1>
+        <p class="text-muted max-w-xl mx-auto animate-fade-in-up stagger-1 text-lg">Koleksi stiker yang sudah pernah kami cetak untuk pelanggan</p>
+      </div>
+    </section>
+
+    <section class="py-12 px-4">
+      <div class="max-w-6xl mx-auto">
+        <div class="flex flex-wrap gap-2 justify-center mb-10 reveal" role="tablist" aria-label="Filter Kategori Galeri">
+          <button type="button" onclick="filterGallery('semua')" class="tab-btn active" data-filter="semua" role="tab">Semua</button>
+          <button type="button" onclick="filterGallery('logo')" class="tab-btn" data-filter="logo" role="tab">Logo</button>
+          <button type="button" onclick="filterGallery('karakter')" class="tab-btn" data-filter="karakter" role="tab">Karakter</button>
+          <button type="button" onclick="filterGallery('text')" class="tab-btn" data-filter="text" role="tab">Text</button>
+          <button type="button" onclick="filterGallery('custom')" class="tab-btn" data-filter="custom" role="tab">Custom</button>
+        </div>
+        <div id="gallery-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          <!-- Skeleton Loading -->
+          <div class="gallery-item aspect-square bg-gray-200 animate-pulse rounded-2xl"></div>
+          <div class="gallery-item aspect-square bg-gray-200 animate-pulse rounded-2xl"></div>
+          <div class="gallery-item aspect-square bg-gray-200 animate-pulse rounded-2xl hidden sm:block"></div>
+          <div class="gallery-item aspect-square bg-gray-200 animate-pulse rounded-2xl hidden md:block"></div>
+        </div>
+        <div id="empty-gallery" class="text-center py-20 text-soft hidden">
+          <svg class="w-16 h-16 mx-auto mb-4 text-accent/40" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <p class="text-lg">Belum ada foto di galeri</p>
+          <p class="text-sm mt-1 text-soft">Foto akan ditambahkan oleh admin</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="lightbox" class="lightbox hidden" role="dialog" aria-modal="true" aria-label="Preview Foto">
+    <img id="lightbox-img" src="" alt="Preview Foto Galeri">
+  </div>
+
+  <button class="back-to-top" id="backToTop" aria-label="Kembali ke atas" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 15l7-7 7 7"/></svg>
+  </button>
+
+  <footer class="footer-gradient py-16 px-4 mt-12">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-8 text-sm text-ink">
+      <div><h3 class="text-lg font-bold gradient-text mb-3">SticTech.</h3><p class="text-muted">Stiker vinyl premium untuk mahasiswa dan UMKM.</p></div>
+      <div><h4 class="font-semibold text-ink mb-3">Menu</h4><div class="space-y-2"><a href="index.html" class="block text-muted hover:text-accent transition">Beranda</a><a href="galeri.html" class="block text-muted hover:text-accent transition">Galeri</a><a href="tentang.html" class="block text-muted hover:text-accent transition">Tentang Kami</a><a href="kontak.html" class="block text-muted hover:text-accent transition">Kontak</a></div></div>
+      <div><h4 class="font-semibold text-ink mb-3">Lokasi</h4><p class="text-muted">Depan Kampus FAPERTA Unimor</p><p class="mt-2 text-muted">Senin - Sabtu: 08.00 - 17.00</p></div>
+    </div>
+    <div class="section-divider max-w-4xl mx-auto my-8"></div>
+    <p class="text-center text-xs text-soft">&copy; <span data-year></span> SticTech. Dibuat oleh Kelompok Kewirausahaan.</p>
+  </footer>
+</body>
+</html>
