@@ -28,13 +28,19 @@
 
   const doLogin = async (e) => {
     e.preventDefault();
+    const errBox = el('login-error');
+    if (errBox) errBox.classList.add('hidden');
     const btn = el('login-btn');
     if (btn) { btn.disabled = true; btn.textContent = 'Masuk...'; }
     try {
       await Auth.signIn(el('login-user').value, el('login-pass').value);
       showToast('Login berhasil!');
     } catch (err) {
-      showToast(err.message || 'Login gagal. Periksa email dan password.', 'error');
+      const msg = err.message || 'Login gagal. Periksa email dan password.';
+      if (errBox) { errBox.textContent = msg; errBox.classList.remove('hidden'); }
+      const card = document.querySelector('.login-card');
+      if (card) { card.classList.remove('shake'); void card.offsetWidth; card.classList.add('shake'); }
+      showToast(msg, 'error');
     } finally {
       if (btn) { btn.disabled = false; btn.textContent = 'Masuk'; }
       await updateAuthUI();
@@ -771,6 +777,16 @@
 
   document.addEventListener('DOMContentLoaded', () => {
     el('login-form')?.addEventListener('submit', doLogin);
+    el('toggle-pass')?.addEventListener('click', () => {
+      const passInput = el('login-pass');
+      const toggleBtn = el('toggle-pass');
+      if (!passInput || !toggleBtn) return;
+      const show = passInput.type === 'password';
+      passInput.type = show ? 'text' : 'password';
+      toggleBtn.classList.toggle('is-on', show);
+      toggleBtn.setAttribute('aria-label', show ? 'Sembunyikan password' : 'Tampilkan password');
+      toggleBtn.setAttribute('title', show ? 'Sembunyikan password' : 'Tampilkan password');
+    });
     el('logout-btn')?.addEventListener('click', doLogout);
     el('add-transaction')?.addEventListener('submit', addTransaction);
     el('add-product')?.addEventListener('submit', addProduct);
