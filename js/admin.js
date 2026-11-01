@@ -11,6 +11,7 @@
 
   let currentTab = 'orders';
   let isLoggedIn = false;
+  let needsSetup = false;
 
   /* ---------- Auth ---------- */
   const updateAuthUI = async () => {
@@ -23,6 +24,15 @@
     } else {
       loginSection.classList.remove('hidden');
       dashboardSection.classList.add('hidden');
+      needsSetup = await Auth.needsSetup();
+      const sub = el('login-subtitle');
+      if (sub) {
+        sub.textContent = needsSetup
+          ? 'Belum ada akun admin. Buat akun admin pertama Anda dengan email dan password yang kuat (minimal 8 karakter).'
+          : 'Masukkan kredensial admin untuk mengakses dashboard';
+      }
+      const lb = el('login-btn');
+      if (lb && !lb.disabled) lb.textContent = needsSetup ? 'Buat Akun Admin' : 'Masuk';
     }
   };
 
@@ -33,8 +43,16 @@
     const btn = el('login-btn');
     if (btn) { btn.disabled = true; btn.textContent = 'Masuk...'; }
     try {
-      await Auth.signIn(el('login-user').value, el('login-pass').value);
-      showToast('Login berhasil!');
+      if (needsSetup) {
+        const pass = el('login-pass').value;
+        if (pass.length < 8) throw new Error('Password minimal 8 karakter.');
+        await Auth.setup(el('login-user').value, pass);
+        needsSetup = false;
+        showToast('Akun admin berhasil dibuat. Selamat datang!');
+      } else {
+        await Auth.signIn(el('login-user').value, el('login-pass').value);
+        showToast('Login berhasil!');
+      }
     } catch (err) {
       const msg = err.message || 'Login gagal. Periksa email dan password.';
       if (errBox) { errBox.textContent = msg; errBox.classList.remove('hidden'); }
@@ -42,7 +60,7 @@
       if (card) { card.classList.remove('shake'); void card.offsetWidth; card.classList.add('shake'); }
       showToast(msg, 'error');
     } finally {
-      if (btn) { btn.disabled = false; btn.textContent = 'Masuk'; }
+      if (btn) { btn.disabled = false; btn.textContent = needsSetup ? 'Buat Akun Admin' : 'Masuk'; }
       await updateAuthUI();
     }
   };

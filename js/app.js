@@ -120,45 +120,48 @@
     return 'https://wa.me/' + num + '?text=' + encodeURIComponent(msg);
   };
 
-  /* ---------- Supabase ---------- */
-  let supabaseClient = null;
+  /* ---------- API (PHP + SQLite) ---------- */
+  // Backend: api.php di hosting yang sama (InfinityFree). Jika API tidak
+  // terjangkau (mis. pratinjau lokal tanpa PHP), otomatis fallback ke
+  // localStorage seperti perilaku lama.
+  const API_BASE = (window.API_CONFIG && window.API_CONFIG.baseUrl) || 'api.php';
 
-  const initSupabase = () => {
-    const { url, anonKey } = window.SUPABASE_CONFIG || {};
-    const ready =
-      url &&
-      anonKey &&
-      url !== 'YOUR_SUPABASE_URL' &&
-      anonKey !== 'YOUR_ANON_KEY' &&
-      url.startsWith('http') &&
-      typeof window.supabase !== 'undefined';
-    if (!ready) return false;
-    if (supabaseClient) return true;
-    try {
-      supabaseClient = window.supabase.createClient(url, anonKey);
-      return true;
-    } catch (e) {
-      console.warn('Supabase init failed:', e);
-      return false;
-    }
+  let apiReady = null;
+  let apiReadyPromise = null;
+
+  const apiFetch = async (path, options = {}) => {
+    const res = await fetch(API_BASE + path, {
+      credentials: 'same-origin',
+      headers: { 'Content-Type': 'application/json' },
+      ...options,
+    });
+    let data = null;
+    try { data = await res.json(); } catch (e) { /* respons bukan JSON */ }
+    if (!res.ok) throw new Error((data && data.error) || 'HTTP ' + res.status);
+    return data;
   };
 
-  const isSupabaseReady = () => supabaseClient !== null;
+  const initApi = () => {
+    if (apiReady !== null) return Promise.resolve(apiReady);
+    if (!apiReadyPromise) {
+      apiReadyPromise = apiFetch('?action=ping')
+        .then((d) => { apiReady = !!(d && d.ok); return apiReady; })
+        .catch(() => { apiReady = false; return false; });
+    }
+    return apiReadyPromise;
+  };
+
+  const isApiReady = () => apiReady === true;
 
   const DB = {
-    mode: () => (isSupabaseReady() ? 'supabase' : 'localstorage'),
+    mode: () => (isApiReady() ? 'api' : 'localstorage'),
 
     async get(key) {
-      if (isSupabaseReady()) {
+      if (await initApi()) {
         try {
-          const { data, error } = await supabaseClient
-            .from(key)
-            .select('*')
-            .order('created_at', { ascending: true });
-          if (error) throw error;
-          return data || [];
+          return await apiFetch('?table=' + encodeURIComponent(key));
         } catch (e) {
-          console.warn('Supabase get failed, fallback localStorage:', e.message);
+          console.warn('API get failed, fallback localStorage:', e.message);
         }
       }
       try {
@@ -170,11 +173,12 @@
 
     async add(key, item) {
       item = { ...item, id: item.id || genId(), created_at: item.created_at || new Date().toISOString() };
-      if (isSupabaseReady()) {
+      if (await initApi()) {
         try {
-          const { data, error } = await supabaseClient.from(key).insert(item).select();
-          if (error) throw error;
-          return data[0] || item;
+          return await apiFetch('?table=' + encodeURIComponent(key), {
+            method: 'POST',
+            body: JSON.stringify(item),
+          });
         } catch (e) {
           throw new Error('Gagal menyimpan ke server: ' + e.message);
         }
@@ -186,11 +190,12 @@
     },
 
     async update(key, id, updates) {
-      if (isSupabaseReady()) {
+      if (await initApi()) {
         try {
-          const { data, error } = await supabaseClient.from(key).update(updates).eq('id', id).select();
-          if (error) throw error;
-          return data[0] || null;
+          return await apiFetch(
+            '?table=' + encodeURIComponent(key) + '&id=' + encodeURIComponent(id) + '&op=update',
+            { method: 'POST', body: JSON.stringify(updates) }
+          );
         } catch (e) {
           throw new Error('Gagal memperbarui server: ' + e.message);
         }
@@ -206,10 +211,12 @@
     },
 
     async remove(key, id) {
-      if (isSupabaseReady()) {
+      if (await initApi()) {
         try {
-          const { error } = await supabaseClient.from(key).delete().eq('id', id);
-          if (error) throw error;
+          await apiFetch(
+            '?table=' + encodeURIComponent(key) + '&id=' + encodeURIComponent(id) + '&op=delete',
+            { method: 'POST', body: '{}' }
+          );
           return;
         } catch (e) {
           throw new Error('Gagal menghapus server: ' + e.message);
@@ -220,13 +227,12 @@
     },
 
     async getById(key, id) {
-      if (isSupabaseReady()) {
+      if (await initApi()) {
         try {
-          const { data, error } = await supabaseClient.from(key).select('*').eq('id', id).single();
-          if (error) throw error;
-          return data;
+          const rows = await apiFetch('?table=' + encodeURIComponent(key));
+          return rows.find((i) => i.id === id);
         } catch (e) {
-          // fallthrough to local
+          // fallthrough ke lokal
         }
       }
       return this.getSync(key).find((i) => i.id === id);
@@ -244,28 +250,51 @@
     },
   };
 
-  /* ---------- Auth ---------- */
+  /* ---------- Auth (sesi PHP via api.php) ---------- */
   const Auth = {
     async signIn(email, password) {
-      if (!initSupabase()) throw new Error('Supabase belum siap. Periksa koneksi dan konfigurasi.');
-      const { data, error } = await supabaseClient.auth.signInWithPassword({
-        email: email.trim(),
-        password,
+      if (!(await initApi())) throw new Error('Server database belum siap. Buka situs lewat hosting (PHP aktif) untuk login.');
+      const data = await apiFetch('?action=login', {
+        method: 'POST',
+        body: JSON.stringify({ email: email.trim(), password }),
       });
-      if (error) throw error;
       return data.user;
     },
+    async setup(email, password) {
+      if (!(await initApi())) throw new Error('Server database belum siap. Buka situs lewat hosting (PHP aktif) untuk membuat akun.');
+      const data = await apiFetch('?action=setup', {
+        method: 'POST',
+        body: JSON.stringify({ email: email.trim(), password }),
+      });
+      return data.user;
+    },
+    async needsSetup() {
+      if (!(await initApi())) return false;
+      try {
+        const d = await apiFetch('?action=session');
+        return !!d.needsSetup;
+      } catch (e) {
+        return false;
+      }
+    },
     async signOut() {
-      if (isSupabaseReady()) await supabaseClient.auth.signOut();
+      if (await initApi()) {
+        try {
+          await apiFetch('?action=logout', { method: 'POST', body: '{}' });
+        } catch (e) { /* abaikan */ }
+      }
     },
     async getSession() {
-      if (!initSupabase()) return null;
-      const { data } = await supabaseClient.auth.getSession();
-      return data.session;
+      if (!(await initApi())) return null;
+      try {
+        const d = await apiFetch('?action=session');
+        return d.user ? { user: d.user } : null;
+      } catch (e) {
+        return null;
+      }
     },
     onAuthStateChange(callback) {
-      if (!initSupabase()) return () => {};
-      return supabaseClient.auth.onAuthStateChange(callback);
+      return () => {};
     },
   };
 
@@ -512,6 +541,8 @@
   window.saveModal = saveModal;
   window.DB = DB;
   window.Auth = Auth;
-  window.isSupabaseReady = isSupabaseReady;
-  window.initSupabase = initSupabase;
+  window.isApiReady = isApiReady;
+  window.initApi = initApi;
+  window.isSupabaseReady = isApiReady;
+  window.initSupabase = initApi;
 })();

@@ -3,3 +3,7 @@ package-lock.css
 .DS_Thumbs
 *.local
 _tools/
+
+# Database SQLite (dibuat otomatis oleh api.php di server)
+data/*.sqlite
+data/*.sqlite-*

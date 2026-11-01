@@ -43,3 +43,8 @@ AddDefaultCharset UTF-8
 
 # Halaman kesalahan
 ErrorDocument 404 /404.html
+
+# Lindungi file database SQLite (backend api.php)
+<FilesMatch "\.(sqlite|sqlite3|db)$">
+  Require all denied
+</FilesMatch>
