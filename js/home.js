@@ -234,16 +234,16 @@
         showToast('Pesanan berhasil dikirim! Mengarahkan ke WhatsApp...');
 
         const waMsg = 'Halo SticTech! Saya sudah memesan melalui website.\n\n'
-          + 'Nama: ' + escapeHtml(order.nama_pemesan) + '\n'
-          + 'Produk: ' + escapeHtml(order.produk_nama) + '\n'
+          + 'Nama: ' + order.nama_pemesan + '\n'
+          + 'Produk: ' + order.produk_nama + '\n'
           + 'Jumlah: ' + order.jumlah + ' pcs\n'
           + 'Total: ' + formatRupiah(order.total_harga) + '\n'
           + 'Pembayaran: ' + (PAYMENT_LABEL[order.metode_bayar] || order.metode_bayar) + '\n'
-          + (order.catatan ? 'Catatan: ' + escapeHtml(order.catatan) + '\n' : '')
+          + (order.catatan ? 'Catatan: ' + order.catatan + '\n' : '')
           + '\nTerima kasih!';
 
         setTimeout(() => {
-          location.href = generateWhatsAppLink(order.whatsapp || SITE_CONFIG.whatsapp, waMsg);
+          location.href = generateWhatsAppLink(SITE_CONFIG.whatsapp, waMsg);
         }, 1000);
       } catch (err) {
         showToast(err.message || 'Gagal mengirim pesanan.', 'error');
@@ -264,15 +264,15 @@
       showToast('Mengarahkan ke WhatsApp...');
 
       let msg = 'Halo SticTech! Saya ingin memesan stiker.\n\n';
-      msg += 'Nama: ' + escapeHtml(order.nama_pemesan) + '\n';
-      msg += 'Produk: ' + escapeHtml(order.produk_nama) + '\n';
+      msg += 'Nama: ' + order.nama_pemesan + '\n';
+      msg += 'Produk: ' + order.produk_nama + '\n';
       msg += 'Jumlah: ' + order.jumlah + ' pcs\n';
       msg += 'Total: ' + formatRupiah(order.total_harga) + '\n';
       msg += 'Pembayaran: ' + (PAYMENT_LABEL[order.metode_bayar] || order.metode_bayar) + '\n';
-      if (order.catatan) msg += 'Catatan: ' + escapeHtml(order.catatan) + '\n';
+      if (order.catatan) msg += 'Catatan: ' + order.catatan + '\n';
       msg += '\nKirim file desain (jika ada) ke chat ini. Terima kasih!';
 
-      location.href = generateWhatsAppLink(order.whatsapp || SITE_CONFIG.whatsapp, msg);
+      location.href = generateWhatsAppLink(SITE_CONFIG.whatsapp, msg);
     } catch (err) {
       showToast(err.message || 'Gagal memproses pesanan.', 'error');
     }
