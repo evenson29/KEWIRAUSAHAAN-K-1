@@ -32,7 +32,7 @@ const PAYMENT_LABEL = {
   bayar_di_tempat: 'Bayar di Tempat (COD)',
   transfer: 'Transfer Bank / QRIS',
 };
-const DEFAULT_COLORS = ['blue', 'indigo', 'purple', 'amber', 'green', 'pink', 'red', 'teal'];
+const DEFAULT_COLORS = ['teal', 'amber', 'green', 'yellow', 'red']; // palet resmi; warna lama (blue/indigo/purple/pink) tetap terbaca lewat badgeFor
 
 window.SITE_CONFIG = SITE_CONFIG;
 window.SUPABASE_CONFIG = SUPABASE_CONFIG;

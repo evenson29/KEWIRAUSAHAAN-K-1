@@ -69,10 +69,7 @@
     }, 100);
   };
 
-  const badgeFor = (k) => {
-    const m = { logo: 'badge-blue', karakter: 'badge-purple', text: 'badge-indigo', custom: 'badge-yellow' };
-    return m[k] || 'badge-gray';
-  };
+  // badgeFor kini global dari app.js (satu pemetaan warna untuk semua halaman)
 
   const filterGallery = async (cat) => {
     currentFilter = cat;
