@@ -524,6 +524,8 @@
   };
 
   window.badgeFor = badgeFor;
+  window.$ = $;
+  window.$$ = $$;
   window.escapeHtml = escapeHtml;
   window.escapeAttr = escapeAttr;
   window.formatRupiah = formatRupiah;

@@ -5,7 +5,7 @@
   'use strict';
 
   /* ---------- Elemen ---------- */
-  const el = (id) => $(id);
+  const el = (id) => document.getElementById(id);
   const loginSection = el('login-section');
   const dashboardSection = el('dashboard-section');
 
