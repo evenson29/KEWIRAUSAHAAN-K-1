@@ -22,13 +22,13 @@
       }
 
       let msg = 'Halo SticTech!\n\n';
-      msg += 'Nama: ' + escapeHtml(name) + '\n';
-      if (phone) msg += 'No. HP: ' + escapeHtml(phone) + '\n';
-      msg += 'Subjek: ' + escapeHtml(subject) + '\n';
-      msg += 'Pesan: ' + escapeHtml(message) + '\n';
+      msg += 'Nama: ' + name + '\n';
+      if (phone) msg += 'No. HP: ' + phone + '\n';
+      msg += 'Subjek: ' + subject + '\n';
+      msg += 'Pesan: ' + message + '\n';
       msg += '\nTerima kasih!';
 
-      location.href = generateWhatsAppLink(phone || SITE_CONFIG.whatsapp, msg);
+      location.href = generateWhatsAppLink(SITE_CONFIG.whatsapp, msg);
       showToast('Mengarahkan ke WhatsApp...');
       form.reset();
     });
