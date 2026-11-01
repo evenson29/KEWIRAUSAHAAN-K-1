@@ -15,9 +15,9 @@ const SITE_CONFIG = {
   siteUrl: 'https://DOMAIN-ANDA.infinityfreeapp.com', // ganti dengan domain asli
 };
 
-const SUPABASE_CONFIG = {
-  url: 'https://qghprfbdnlgxckjsbgvf.supabase.co',
-  anonKey: 'sb_publishable_0-Ex062jRWQ40E52zRAThg_GnP--1vW',
+// Backend PHP + SQLite (file api.php di folder yang sama dengan halaman)
+const API_CONFIG = {
+  baseUrl: 'api.php',
 };
 
 const STATUS_ORDER = ['diterima', 'dicetak', 'selesai', 'diambil'];
@@ -35,7 +35,7 @@ const PAYMENT_LABEL = {
 const DEFAULT_COLORS = ['teal', 'amber', 'green', 'yellow', 'red']; // palet resmi; warna lama (blue/indigo/purple/pink) tetap terbaca lewat badgeFor
 
 window.SITE_CONFIG = SITE_CONFIG;
-window.SUPABASE_CONFIG = SUPABASE_CONFIG;
+window.API_CONFIG = API_CONFIG;
 window.STATUS_ORDER = STATUS_ORDER;
 window.NEXT_STATUS = NEXT_STATUS;
 window.STATUS_LABEL = STATUS_LABEL;
