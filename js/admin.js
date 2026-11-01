@@ -316,6 +316,10 @@
     const products = await DB.get('produk');
     const tbody = el('products-table');
     if (!tbody) return;
+    if (products.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="5" class="text-center text-muted" style="padding:3rem 1rem">Belum ada produk. Tambahkan produk pertama lewat form di atas.</td></tr>';
+      return;
+    }
     tbody.innerHTML = products.map((p) => {
       const imgCell = p.gambar_url
         ? '<img src="' + escapeAttr(p.gambar_url) + '" alt="' + escapeHtml(p.nama) + '" loading="lazy" decoding="async" width="48" height="48" '
@@ -484,6 +488,10 @@
     const items = await DB.get('galeri');
     const tbody = el('galeri-table');
     if (!tbody) return;
+    if (items.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="4" class="text-center text-muted" style="padding:3rem 1rem">Belum ada foto di galeri. Tambahkan foto pertama lewat form di atas.</td></tr>';
+      return;
+    }
     tbody.innerHTML = items.map((i) => (
       '<tr>'
       + '<td><img src="' + escapeAttr(i.src) + '" alt="' + escapeHtml(i.judul) + '" loading="lazy" decoding="async" width="40" height="40" '

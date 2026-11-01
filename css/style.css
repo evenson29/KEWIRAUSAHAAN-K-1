@@ -858,3 +858,88 @@ textarea:focus-visible {
 .table-dark td {
   white-space: nowrap;
 }
+
+/* ===== ADMIN PANEL (khusus admin.html, body.admin-page) ===== */
+/* Latar abu terang agar kartu putih terlihat sebagai permukaan kerja */
+.admin-page { background: var(--bg-secondary); }
+/* Dekorasi partikel halaman publik tidak diperlukan di area kerja admin */
+.admin-page .particles { display: none; }
+/* Navbar admin: putih bersih, bukan gradasi kuning halaman publik */
+.admin-page .navbar-blur,
+.admin-page .navbar-blur.scrolled {
+  background: rgba(255, 255, 255, 0.94);
+  border-bottom: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-sm);
+}
+/* Kartu di admin tidak melayang saat hover — ini alat kerja, bukan landing page */
+.admin-page .glass-card:hover {
+  transform: none;
+  background: var(--bg-card);
+  border-color: var(--border-subtle);
+  box-shadow: var(--shadow-sm);
+}
+/* Kepala dashboard sebagai kartu judul */
+.admin-header {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: 1.25rem 1.5rem;
+}
+/* Bilah tab: satu kartu lengket di atas, bisa digeser menyamping di HP */
+.admin-tabs {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: 0.5rem;
+  position: sticky;
+  top: 5.75rem;
+  z-index: 30;
+  scrollbar-width: none;
+}
+.admin-tabs::-webkit-scrollbar { display: none; }
+.admin-tabs .tab-btn {
+  flex: 0 0 auto;
+  border-color: transparent;
+  background: transparent;
+}
+.admin-tabs .tab-btn.active {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #fff;
+}
+/* Kartu statistik dengan ikon */
+.admin-stat { display: flex; align-items: center; gap: 1rem; }
+.admin-stat-icon {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+}
+.admin-stat-icon svg { width: 1.5rem; height: 1.5rem; }
+.admin-stat-icon.is-amber { background: rgba(245, 158, 11, 0.14); color: #d97706; }
+.admin-stat-icon.is-emerald { background: rgba(16, 185, 129, 0.13); color: #059669; }
+.admin-stat-icon.is-rose { background: rgba(244, 63, 94, 0.12); color: #e11d48; }
+.admin-stat-icon.is-teal { background: rgba(0, 173, 181, 0.13); color: #00838f; }
+.admin-stat-label {
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 600;
+}
+/* Kepala kartu tabel */
+.admin-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+.admin-card-head h3 { font-weight: 600; color: var(--text-primary); }
