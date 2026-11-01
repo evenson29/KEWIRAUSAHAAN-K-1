@@ -58,7 +58,7 @@
       <div class="max-w-6xl mx-auto">
         <!-- LOGIN -->
         <div id="login-section" class="max-w-md mx-auto">
-          <div class="glass-card p-8 relative overflow-hidden">
+          <div class="glass-card login-card p-6 sm:p-9 relative overflow-hidden">
             <div
               class="hero-glow animate-pulse-glow"
               style="width: 300px; height: 300px; background: radial-gradient(circle, rgba(0, 173, 181, 0.25), transparent); top: -100px; right: -100px; position: absolute; border-radius: 50%; filter: blur(80px); pointer-events: none;"
@@ -68,7 +68,7 @@
               style="width: 250px; height: 250px; background: radial-gradient(circle, rgba(0, 173, 181, 0.2), transparent); bottom: -80px; left: -80px; position: absolute; border-radius: 50%; filter: blur(80px); pointer-events: none;"
             ></div>
             <div class="text-center mb-8 relative z-10">
-              <div class="badge badge-purple mx-auto mb-4 animate-fade-in-down" style="width: fit-content">
+              <div class="badge badge-teal mx-auto mb-4 animate-fade-in-down" style="width: fit-content">
                 ADMIN
               </div>
               <img
@@ -86,27 +86,37 @@
             </div>
             <form id="login-form" class="space-y-4 relative z-10 animate-fade-in-up stagger-3">
               <div>
-                <label for="login-user" class="block text-sm font-medium text-ink mb-1.5">Email Admin</label>
-                <input
-                  type="email"
-                  id="login-user"
-                  required
-                  class="input-dark"
-                  placeholder="admin@example.com"
-                  autocomplete="username"
-                />
+                <label for="login-user" class="block text-sm font-semibold text-ink mb-1.5">Email Admin</label>
+                <div class="login-field">
+                  <svg class="field-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2" /><path d="m22 7-10 6L2 7" /></svg>
+                  <input
+                    type="email"
+                    id="login-user"
+                    required
+                    class="input-dark"
+                    placeholder="admin@example.com"
+                    autocomplete="username"
+                  />
+                </div>
               </div>
               <div>
-                <label for="login-pass" class="block text-sm font-medium text-ink mb-1.5">Password</label>
-                <input
-                  type="password"
-                  id="login-pass"
-                  required
-                  class="input-dark"
-                  placeholder="Masukkan password"
-                  autocomplete="current-password"
-                />
+                <label for="login-pass" class="block text-sm font-semibold text-ink mb-1.5">Password</label>
+                <div class="login-field has-toggle">
+                  <svg class="field-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" /></svg>
+                  <input
+                    type="password"
+                    id="login-pass"
+                    required
+                    class="input-dark"
+                    placeholder="Masukkan password"
+                    autocomplete="current-password"
+                  />
+                  <button type="button" id="toggle-pass" class="toggle-pass" aria-label="Tampilkan password" title="Tampilkan password">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" /><circle cx="12" cy="12" r="3" /></svg>
+                  </button>
+                </div>
               </div>
+              <p id="login-error" class="login-error hidden" role="alert"></p>
               <button
                 type="submit"
                 id="login-btn"
@@ -116,6 +126,7 @@
               </button>
             </form>
           </div>
+          <p class="login-back"><a href="index.html">&larr; Kembali ke Beranda</a></p>
         </div>
 
         <!-- DASHBOARD -->
