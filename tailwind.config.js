@@ -14,6 +14,9 @@ module.exports = {
         ink: '#2D2D2D',
         muted: '#555555',
         soft: '#6B6B6B',
+        success: '#059669',
+        warning: '#D97706',
+        danger: '#DC2626',
       },
       fontFamily: {
         inter: ['Inter', 'sans-serif'],

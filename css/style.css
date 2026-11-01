@@ -126,7 +126,7 @@ a { color: inherit; text-decoration: none; }
 
 /* Tombol Bahaya */
 .btn-danger {
-  background: linear-gradient(135deg, #ef4444, #dc2626);
+  background: linear-gradient(135deg, #DC2626, #B91C1C);
   color: #fff;
   padding: 0.625rem 1.25rem;
   border-radius: var(--radius-sm);
@@ -144,7 +144,7 @@ a { color: inherit; text-decoration: none; }
 
 /* Tombol Sukses */
 .btn-success {
-  background: linear-gradient(135deg, #10b981, #059669);
+  background: linear-gradient(135deg, #059669, #047857);
   color: #fff;
   padding: 0.625rem 1.25rem;
   border-radius: var(--radius-sm);
@@ -162,7 +162,7 @@ a { color: inherit; text-decoration: none; }
 
 /* Tombol WhatsApp */
 .btn-whatsapp {
-  background: linear-gradient(135deg, #25d366, #128c7e);
+  background: linear-gradient(135deg, #128C7E, #075E54); /* hijau resmi WhatsApp, diselaraskan ke keluarga teal */
   color: #fff;
   padding: 0.875rem 1.75rem;
   border-radius: var(--radius-md);
@@ -294,12 +294,13 @@ textarea.input-dark { resize: vertical; min-height: 100px; }
   font-weight: 600;
   letter-spacing: 0.02em;
 }
-.badge-green { background: rgba(16, 185, 129, 0.12); color: #059669; border: 1px solid rgba(16, 185, 129, 0.25); }
-.badge-yellow { background: var(--highlight-light); color: #B8860B; border: 1px solid rgba(255, 210, 0, 0.35); }
-.badge-blue { background: rgba(0, 173, 181, 0.1); color: #00838F; border: 1px solid rgba(0, 173, 181, 0.25); }
-.badge-purple { background: rgba(139, 92, 246, 0.1); color: #7C3AED; border: 1px solid rgba(139, 92, 246, 0.2); }
-.badge-red { background: rgba(239, 68, 68, 0.1); color: #DC2626; border: 1px solid rgba(239, 68, 68, 0.2); }
-.badge-gray { background: rgba(100, 116, 139, 0.1); color: #64748B; border: 1px solid rgba(100, 116, 139, 0.2); }
+.badge-green { background: rgba(5, 150, 105, 0.12); color: #047857; border: 1px solid rgba(5, 150, 105, 0.25); }
+.badge-yellow { background: var(--highlight-light); color: #92400E; border: 1px solid rgba(217, 119, 6, 0.35); }
+.badge-amber { background: rgba(245, 158, 11, 0.14); color: #92400E; border: 1px solid rgba(245, 158, 11, 0.32); }
+.badge-blue { background: rgba(0, 173, 181, 0.1); color: #00707C; border: 1px solid rgba(0, 173, 181, 0.25); }
+.badge-purple { background: rgba(245, 158, 11, 0.13); color: #92400E; border: 1px solid rgba(245, 158, 11, 0.3); } /* nama kelas dipertahankan utk warna lama di database; rona diselaraskan ke amber palet */
+.badge-red { background: rgba(220, 38, 38, 0.09); color: #B91C1C; border: 1px solid rgba(220, 38, 38, 0.22); }
+.badge-gray { background: rgba(107, 107, 107, 0.1); color: #555555; border: 1px solid rgba(107, 107, 107, 0.25); }
 
 /* ===== ANIMATIONS ===== */
 @keyframes fadeInUp {
@@ -753,18 +754,18 @@ textarea.input-dark { resize: vertical; min-height: 100px; }
 
 .badge-teal {
   background: rgba(0, 173, 181, 0.1);
-  color: #00838F;
+  color: #00707C;
   border: 1px solid rgba(0, 173, 181, 0.25);
 }
 .badge-pink {
-  background: rgba(236, 72, 153, 0.1);
-  color: #DB2777;
-  border: 1px solid rgba(236, 72, 153, 0.2);
+  background: rgba(225, 29, 72, 0.08);
+  color: #BE123C;
+  border: 1px solid rgba(225, 29, 72, 0.2);
 }
 .badge-indigo {
-  background: rgba(99, 102, 241, 0.1);
-  color: #4F46E5;
-  border: 1px solid rgba(99, 102, 241, 0.2);
+  background: rgba(0, 95, 104, 0.12);
+  color: #005F68;
+  border: 1px solid rgba(0, 95, 104, 0.25);
 }
 
 /* Modal / lightbox sembunyikan eksplisit (menangani konflik .hidden vs display:flex) */

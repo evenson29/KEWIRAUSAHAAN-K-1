@@ -402,7 +402,7 @@
         + '<div><label class="block text-xs text-[#555555] mb-1">Foto</label><input type="file" id="step-img-' + escapeAttr(s.id) + '" accept="image/*" class="input-dark text-xs"></div>'
         + '<div><label class="block text-xs text-[#555555] mb-1">Warna</label>'
         + '<select id="step-color-' + escapeAttr(s.id) + '" class="select-dark text-sm">'
-        + DEFAULT_COLORS.map((c) => '<option value="' + c + '" ' + (s.warna === c ? 'selected' : '') + '>' + c + '</option>').join('')
+        + (DEFAULT_COLORS.includes(s.warna) ? DEFAULT_COLORS : DEFAULT_COLORS.concat(s.warna)).map((c) => '<option value="' + c + '" ' + (s.warna === c ? 'selected' : '') + '>' + c + '</option>').join('')
         + '</select></div></div>'
         + (s.gambar ? '<img src="' + escapeAttr(s.gambar) + '" class="w-full h-20 object-cover rounded-lg border border-[#E0E0E0]">' : '')
         + '</div>'

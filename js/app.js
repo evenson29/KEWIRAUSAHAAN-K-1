@@ -483,6 +483,18 @@
   };
 
   /* expose */
+  const badgeFor = (key) => {
+    // Satu-satunya pemetaan warna label: kategori galeri + nama warna langkah
+    // proses (termasuk nilai lama di database) -> kelas badge palet SticTech.
+    const m = {
+      logo: 'badge-teal', karakter: 'badge-amber', text: 'badge-green', custom: 'badge-yellow',
+      teal: 'badge-teal', blue: 'badge-blue', indigo: 'badge-indigo', purple: 'badge-purple',
+      amber: 'badge-amber', yellow: 'badge-yellow', green: 'badge-green', pink: 'badge-pink', red: 'badge-red',
+    };
+    return m[key] || 'badge-gray';
+  };
+
+  window.badgeFor = badgeFor;
   window.escapeHtml = escapeHtml;
   window.escapeAttr = escapeAttr;
   window.formatRupiah = formatRupiah;
