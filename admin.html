@@ -15,7 +15,7 @@
     <script src="js/app.js" defer></script>
     <script src="js/admin.js" defer></script>
   </head>
-  <body>
+  <body class="admin-page">
     <a href="#main-content" class="skip-link">Lompat ke konten utama</a>
     <div class="particles" id="particles"></div>
 
@@ -54,7 +54,7 @@
       </div>
     </nav>
 
-    <main class="pt-36 pb-20 px-4" id="main-content">
+    <main class="pt-24 pb-20 px-4" id="main-content">
       <div class="max-w-6xl mx-auto">
         <!-- LOGIN -->
         <div id="login-section" class="max-w-md mx-auto">
@@ -120,7 +120,7 @@
 
         <!-- DASHBOARD -->
         <div id="dashboard-section" class="hidden space-y-6">
-          <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pt-2">
+          <div class="admin-header flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
             <div class="reveal">
               <h1 class="text-3xl font-bold text-ink mb-1">
                 Dashboard Admin
@@ -137,33 +137,61 @@
           <!-- STATS -->
           <div class="grid grid-cols-2 md:grid-cols-4 gap-4 reveal">
             <div class="stat-card">
-              <p class="text-muted text-xs mb-1">Pesanan Baru</p>
-              <p id="stat-orders" class="text-3xl font-bold text-amber-600">
-                0
-              </p>
+              <div class="admin-stat">
+                <span class="admin-stat-icon is-amber">
+                  <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" /></svg>
+                </span>
+                <div>
+                  <p class="admin-stat-label text-muted text-xs mb-1">Pesanan Baru</p>
+                  <p id="stat-orders" class="text-3xl font-bold text-amber-600">
+                    0
+                  </p>
+                </div>
+              </div>
             </div>
             <div class="stat-card">
-              <p class="text-muted text-xs mb-1">Total Pemasukan</p>
-              <p id="stat-income" class="text-3xl font-bold text-emerald-600">
-                Rp 0
-              </p>
+              <div class="admin-stat">
+                <span class="admin-stat-icon is-emerald">
+                  <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M23 6l-9.5 9.5-5-5L1 18" /><path d="M17 6h6v6" /></svg>
+                </span>
+                <div>
+                  <p class="admin-stat-label text-muted text-xs mb-1">Total Pemasukan</p>
+                  <p id="stat-income" class="text-3xl font-bold text-emerald-600">
+                    Rp 0
+                  </p>
+                </div>
+              </div>
             </div>
             <div class="stat-card">
-              <p class="text-muted text-xs mb-1">Total Pengeluaran</p>
-              <p id="stat-expense" class="text-3xl font-bold text-rose-600">
-                Rp 0
-              </p>
+              <div class="admin-stat">
+                <span class="admin-stat-icon is-rose">
+                  <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M23 18l-9.5-9.5-5 5L1 6" /><path d="M17 18h6v-6" /></svg>
+                </span>
+                <div>
+                  <p class="admin-stat-label text-muted text-xs mb-1">Total Pengeluaran</p>
+                  <p id="stat-expense" class="text-3xl font-bold text-rose-600">
+                    Rp 0
+                  </p>
+                </div>
+              </div>
             </div>
             <div class="stat-card">
-              <p class="text-muted text-xs mb-1">Profit</p>
-              <p id="stat-profit" class="text-3xl font-bold text-accentDark">
-                Rp 0
-              </p>
+              <div class="admin-stat">
+                <span class="admin-stat-icon is-teal">
+                  <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 20V10" /><path d="M18 20V4" /><path d="M6 20v-4" /></svg>
+                </span>
+                <div>
+                  <p class="admin-stat-label text-muted text-xs mb-1">Profit</p>
+                  <p id="stat-profit" class="text-3xl font-bold text-accentDark">
+                    Rp 0
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
 
           <!-- TABS -->
-          <div class="flex gap-2 flex-wrap reveal" role="tablist">
+          <div class="admin-tabs reveal" role="tablist">
             <button
               class="tab-btn active"
               onclick="switchTab('orders')"
@@ -243,6 +271,7 @@
               </select>
             </div>
             <div class="glass-card table-responsive">
+              <div class="admin-card-head"><h3>Daftar Pesanan</h3></div>
               <table class="table-dark">
                 <thead>
                   <tr>
@@ -308,6 +337,7 @@
               </form>
             </div>
             <div class="glass-card table-responsive">
+              <div class="admin-card-head"><h3>Riwayat Transaksi</h3></div>
               <table class="table-dark">
                 <thead>
                   <tr>
@@ -368,6 +398,7 @@
               </form>
             </div>
             <div class="glass-card table-responsive">
+              <div class="admin-card-head"><h3>Daftar Produk</h3></div>
               <table class="table-dark">
                 <thead>
                   <tr>
@@ -419,6 +450,7 @@
               <div id="process-steps-form" class="grid md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
             </div>
             <div class="glass-card table-responsive">
+              <div class="admin-card-head"><h3>Daftar Langkah Proses</h3></div>
               <table class="table-dark">
                 <thead>
                   <tr>
@@ -469,6 +501,7 @@
               </form>
             </div>
             <div class="glass-card table-responsive">
+              <div class="admin-card-head"><h3>Daftar Foto Galeri</h3></div>
               <table class="table-dark">
                 <thead>
                   <tr>
