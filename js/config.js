@@ -12,7 +12,7 @@ const SITE_CONFIG = {
   hours: 'Senin - Sabtu: 08.00 - 17.00 WITA',
   mapEmbed: 'https://www.google.com/maps?q=Universitas%20Timor%20Kefamenanu&z=16&output=embed',
   year: new Date().getFullYear(),
-  siteUrl: 'https://DOMAIN-ANDA.infinityfreeapp.com', // ganti dengan domain asli
+  siteUrl: 'https://sticktech.site.je', // domain live di InfinityFree
 };
 
 // Backend PHP + SQLite (file api.php di folder yang sama dengan halaman)
