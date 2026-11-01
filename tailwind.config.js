@@ -13,7 +13,7 @@ module.exports = {
         brand: '#FFC107',
         ink: '#2D2D2D',
         muted: '#555555',
-        soft: '#888888',
+        soft: '#6B6B6B',
       },
       fontFamily: {
         inter: ['Inter', 'sans-serif'],
